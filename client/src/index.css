@@ -7,7 +7,11 @@
   font-family: "Poppins", sans-serif;
 }
 
-@theme{
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm:480px;
+  --breakpoint-md:768px;
+  --breakpoint-lg:976px;
   --color-primary:#4fbf8b;
   --color-primary-dull:#44ae7c;
 }
