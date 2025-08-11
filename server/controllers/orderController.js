@@ -17,13 +17,14 @@ export const placeOrderCOD=async (req,res)=>{
             return (await acc)+product.offerPrice*item.quantity;
         },0)
 
+        // Add Tax Charge (2%)
         amount+=Math.floor(amount*0.02);
          await Order.create({
             userId,
             items,
             amount,
             address,
-            paymentType:"COD"
+            paymentType:"COD",
 
          });
          return res.json({success:true,message:"Order Placed Succesfully"})
@@ -36,7 +37,9 @@ export const placeOrderCOD=async (req,res)=>{
 //By stripe
 export const placeOrderStripe=async (req,res)=>{
     try{
-        const {userId}=req.user;
+        console.log(req);
+        const userId=req.body.userId; // Assuming userId is sent in the request body
+        console
         const {items,address}=req.body;
         const {origin}=req.headers;
         if(!address||items.length===0){

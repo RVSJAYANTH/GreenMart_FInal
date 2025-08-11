@@ -18,6 +18,7 @@ const authUser = async (req, res, next) => {
     next();
 
   } catch (error) {
+    console("Token verification failed:", error.message);
     console.error("JWT Error:", error.message);
     res.status(401).json({ success: false, message: "Invalid or Expired Token" });
   }
