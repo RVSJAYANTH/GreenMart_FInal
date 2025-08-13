@@ -21,7 +21,7 @@ await connectDB();
 await connectCloudinary();
 
 
-const allowedOrigins=["http://localhost:5173","https://shop-herefrontend.vercel.app","https://spaceflight-geoscientist-10858843-5367697.postman.co/workspace/My-Workspace~405d8865-8141-4b24-9895-7a4642f36ebe/request/create?requestId=a26d2b2e-e953-4d87-8239-39f7e5cb407e","https://green-mart-f-inal-4uw5.vercel.app/"]
+const allowedOrigins=["http://localhost:5173","https://shop-herefrontend.vercel.app","https://spaceflight-geoscientist-10858843-5367697.postman.co/workspace/My-Workspace~405d8865-8141-4b24-9895-7a4642f36ebe/request/create?requestId=a26d2b2e-e953-4d87-8239-39f7e5cb407e","https://green-mart-f-inal-4uw5.vercel.app"]
 
 app.post("/stripe",express.raw({type:"application/json"}),stripeWebhooks)
 
