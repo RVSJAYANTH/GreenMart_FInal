@@ -39,7 +39,7 @@ export const placeOrderStripe=async (req,res)=>{
     try{
         console.log(req);
         const userId=req.body.userId; // Assuming userId is sent in the request body
-        console
+      
         const {items,address}=req.body;
         const {origin}=req.headers;
         if(!address||items.length===0){
@@ -84,7 +84,7 @@ export const placeOrderStripe=async (req,res)=>{
         const session=await stripeInstance.checkout.sessions.create({
             line_items,
             mode:"payment",
-            success_url:`${origin}/loader?next=my-orders`,
+            success_url:`${origin}/my-orders`,
             cancel_url:`${origin}/cart`,
             metadata:{
                 orderId:order._id.toString(),
@@ -157,7 +157,7 @@ export const getUserOrders=async (req,res)=>{
         const {userId}=req.user;
         const orders=await Order.find({
             userId,
-            $or:[{paymentType:"COD"},{isPaid:true}]
+            $or:[{paymentType:"COD"},{paymentType:"Online"},{isPaid:true}]
         }).populate("items.product address").sort({createdAt:-1});
         res.json({success:true,orders}) 
     }catch(error){
@@ -171,8 +171,9 @@ export const getUserOrders=async (req,res)=>{
 export const getAllOrders=async (req,res)=>{
     try{
         const orders=await Order.find({
-            $or:[{paymentType:"COD"},{isPaid:true}]
+            $or:[{paymentType:"COD"},{paymentType:"Online"},{isPaid:true}]
         }).populate("items.product address").sort({createdAt:-1});
+        console.log("orders",orders);
         res.json({success:true,orders}) 
     }catch(error){
         console.log(error.message);

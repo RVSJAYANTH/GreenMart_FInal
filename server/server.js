@@ -11,6 +11,8 @@ import cartRouter from "./routes/cartRoute.js";
 import addressRouter from "./routes/addressRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import { stripeWebhooks } from "./controllers/orderController.js";
+import adminRouter from "./routes/AdminRoute.js";
+
 import morgan from "morgan"; 
 const app=express();
 const port=process.env.PORT || 4000;
@@ -37,7 +39,7 @@ app.use("/api/product",productRouter);
 app.use("/api/cart",cartRouter);
 app.use("/api/address",addressRouter);
 app.use("/api/order",orderRouter);
-
+app.use("/api/admin",adminRouter);
 
 
 app.listen(port,()=>{

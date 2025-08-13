@@ -21,6 +21,7 @@ import AddProduct from './pages/Seller/AddProduct'
 import ProductList from './pages/Seller/ProductList'
 import Orders from './pages/Seller/Orders'
 import Loading from './components/Loading'
+import AdminSignup from './pages/AdminSignup'
 
 const App = () => {
 
@@ -42,10 +43,11 @@ const {showUserLogin,isSeller,}=useAppContext();
           <Route path='/add-address' element={<AddAddress/>}/>
           <Route path='/my-orders' element={<MyOrders/>}/>
           <Route path='/loader' element={<Loading/>}/>
-           <Route path="/seller" element={1?<SellerLayout/>:<SellerLogin/>}>
-             <Route index element={1?<AddProduct/>:null}/>
+           <Route path="/seller" element={isSeller?<SellerLayout/>:<SellerLogin/>}>
+             <Route index element={isSeller?<AddProduct/>:null}/>
              <Route path="product-list" element={<ProductList/>}/>
              <Route path="orders" element={<Orders/>}/>
+             {/* <Route path='adminsignup' element={<AdminSignup/>}></Route> */}
            </Route>
         </Routes>
       </div>
